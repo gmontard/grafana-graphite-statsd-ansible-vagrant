@@ -1,0 +1,11 @@
+---
+- name: checkout grafana from git
+  git: repo={{ grafana.git_url }}
+       dest={{ grafana.root_path }}
+       version={{ grafana.git_branch }}
+       force=yes
+       update=yes
+  notify:
+    - rebuild grafana {{ grafana.root_path }}
+- name: make dist dir
+  file: path={{ grafana.root_path }}/dist state=directory owner={{ grafana.owner }}

@@ -1,0 +1,7 @@
+---
+- include: grafana.git.yml
+  when: grafana.version is not defined
+- include: grafana.release.yml
+  when: grafana.version is defined
+- include: grafana.config.yml
+- include: nginx.yml

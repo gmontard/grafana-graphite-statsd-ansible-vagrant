@@ -1,0 +1,36 @@
+---
+
+- name: Ensure python-pycurl is installed
+  apt: pkg=python-pycurl state=installed
+
+- name: Ensure Elasticsearch apt signing key is installed
+  apt_key: url=http://packages.elasticsearch.org/GPG-KEY-elasticsearch state=present
+
+- name: Ensure Elasticsearch 1.1.x repository is installed
+  apt_repository: repo="deb http://packages.elasticsearch.org/elasticsearch/1.1/debian stable main" state=present update_cache=yes
+
+- name: Ensure elasticsearch is installed
+  apt: pkg={{item}} state=latest
+  with_items:
+    - openjdk-7-jre-headless
+    - elasticsearch
+
+- name: Ensure elasticsearch config is in place
+  copy: src=elasticsearch.yml dest=/etc/elasticsearch/elasticsearch.yml
+  notify:
+    - restart elasticsearch
+
+- name: Ensure elasticsearch service is enabled
+  service: name=elasticsearch enabled=yes
+
+- name: Ensure head (Plugin) is installed
+  command: /usr/share/elasticsearch/bin/plugin -install mobz/elasticsearch-head creates=/usr/share/elasticsearch/plugins/head/_site/.gitignore
+
+- name: Ensure Paramedic (Plugin) is installed
+  command: /usr/share/elasticsearch/bin/plugin -install karmi/elasticsearch-paramedic creates=/usr/share/elasticsearch/plugins/paramedic/_site/.gitignore
+
+- name: Ensure Bigdesk (Plugin) is installed
+  command: /usr/share/elasticsearch/bin/plugin -install lukas-vlcek/bigdesk creates=/usr/share/elasticsearch/plugins/bigdesk/_site/.gitignore
+
+- name: Ensure Inquisitor (Plugin) is installed
+  command: /usr/share/elasticsearch/bin/plugin -install polyfractal/elasticsearch-inquisitor creates=/usr/share/elasticsearch/plugins/inquisitor/.gitignore

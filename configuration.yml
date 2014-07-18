@@ -1,0 +1,52 @@
+- hosts: all
+  sudo: True
+  vars:
+    graphite:
+      version: master
+      timezone: Europe/Paris
+      workers: 4
+      port: 8082 #port on which you can access Graphite, port 80 is reserved for grafana
+      server: graphite.local
+      secret_key: 'ob3sow^ik#4q(k5*tgw&6j+osyr^@0jus$yd+-#^&^d#%yim1!'
+    carbon:
+      host: 0.0.0.0
+      ssl: no
+    db_graphite:
+      name: graphite
+      user: graphite
+      password: graphite
+
+    grafana:
+      version: 1.6.1 #if defined, install this version via binary rather than building from git (git is sometime broken...)
+      nginx_listen: 0.0.0.0 #nginx listen address, `127.0.0.1` by default
+      nginx_server_name: grafana.local #nginx server_name (hostname), `127.0.0.1` by default
+      nginx_enable_ssl: false #whether or not ssl should be enabled, `false` by default
+      nginx_htpasswd: 'admin:YWG41BPzVAkN6'
+      #owner #basically nginx user, `www-data` by default
+      #git_url #git url for grafana, set to upstream by default
+      #git_branch #git branch to track, set to master by default
+      #root_path #path to clone grafana, `/var/www/grafana` by default
+      #default_route #default dashboard url, `/dashboard/file/default.json` by default
+      #index #grafana index to store dashboards, `grafana-dash` by default
+      #elasticsearch_url #elasticsearch url *for nginx*, http://127.0.0.1:9200 by default
+      #graphite_url #graphite-web url *for nginx*, http://127.0.0.1:8080 by default
+      #nginx_config_name #nginx config name, `grafana.conf` by default
+      #nginx_config_path #nginx configs dir, `/etc/nginx/sites-enabled` by default
+      #nginx_access_log #path to nginx access_log, `false` by default
+      #nginx_error_log #path to nginx error_log, `false` by default
+      #nginx_ssl_cert_path #nginx ssl certificate path, `""` by default
+      #nginx_ssl_key_path #nginx ssl key path, `""` by default
+      #nginx_http_auth_file #path to nginx http auth file, `false` by default
+
+  roles:
+    - common
+    - python
+    - supervisor
+    - role: nginx
+      nginx_sites: none
+    - postgres
+    - graphite
+    - nodejs
+    - statsd
+    - elasticsearch
+    - grafana
