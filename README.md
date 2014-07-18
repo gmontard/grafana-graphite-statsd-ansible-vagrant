@@ -56,6 +56,6 @@ By default, the Vagrant box runs Ubuntu 12.04, but the playbook supports Debian 
 This project is originally based on
 
 - Graphite install repository from [DandyDev](https://github.com/DandyDev) that you can find [here](https://github.com/DandyDev/graphite-statsd-ansible-vagrant)
-- Graphana Ainsible role from [Torkelo](https://github.com/torkelo) that you can find [here]([grafana](https://github.com/torkelo/grafana).
+- Grafana Ainsible role from [Bobrik](https://github.com/bobrik) that you can find [here](https://github.com/bobrik/ansible-grafana)
 
 Many thanks to them.

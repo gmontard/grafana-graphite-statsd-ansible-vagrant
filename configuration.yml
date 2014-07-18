@@ -15,7 +15,6 @@
       name: graphite
       user: graphite
       password: graphite
-
     grafana:
       version: 1.6.1 #if defined, install this version via binary rather than building from git (git is sometime broken...)
       nginx_listen: 0.0.0.0 #nginx listen address, `127.0.0.1` by default
