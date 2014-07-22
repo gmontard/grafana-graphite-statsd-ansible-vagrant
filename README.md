@@ -58,6 +58,13 @@ Then hit:
 $ vagrant up --provision
 ```
 
+## Deploying with Ansible
+
+Before running the command below you need to add the ip of your target server into the _ansible_hosts_ file
+```
+$ ansible-playbook -v -i ansible_hosts playbook.yml -e target=servers
+```
+
 ## Generating an SSL Certificate
 
 If you don't own a valid SSL certificate you can still generate a self signed on:

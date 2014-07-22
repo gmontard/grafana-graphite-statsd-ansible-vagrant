@@ -1,4 +1,5 @@
-- hosts: all
+---
+- hosts: "{{target}}"
   sudo: True
   vars:
     graphite:
@@ -7,9 +8,9 @@
       workers: 4
       secret_key: 'ob3sow^ik#4q(k5*tgw&6j+osyr^@0jus$yd+-#^&^d#%yim1!'
       nginx_server_port: 8082 ## port on which you can access Graphite, port 80 is reserved for grafana, if you use 80 you won't be able to access graphite
-      nginx_server_name: stats.mywebsite.dev ## nginx server_name (hostname), `127.0.0.1` by default
+      nginx_server_name: stats.mywebsite.dev
       nginx_htpasswd: 'admin:YWG41BPzVAkN6'
-      nginx_enable_ssl: true ## whether or not ssl should be enabled
+      nginx_enable_ssl: true
       nginx_server_port_ssl: 8083 ## port to use for SSL (443 is reserved for grafana)
       nginx_ssl_path: "/etc/nginx/ssl/grafana"
       nginx_ssl_cert: ssl_certif.pem
@@ -23,14 +24,14 @@
       user: graphite
       password: graphite
 
-    grafana_version: 1.6.1 #if defined, install this version via binary rather than building from git (git is sometime broken...)
-    grafana_nginx_listen: 10.0.0.20 # nginx listen address, `127.0.0.1` by default, you need to use the public ip with you want an external access
-    grafana_nginx_server_name: stats.mywebsite.dev ## nginx server_name (hostname), `127.0.0.1` by default
+    grafana_version: 1.6.1
+    grafana_nginx_listen: "{{target}}" # nginx listen address, `127.0.0.1` by default, you need to use the public ip with you want an external access
+    grafana_nginx_server_name: stats.mywebsite.dev
     grafana_nginx_htpasswd: 'admin:YWG41BPzVAkN6'
-    grafana_nginx_enable_ssl: true ## whether or not ssl should be enabled, `false` by default
+    grafana_nginx_enable_ssl: true
     grafana_nginx_ssl_path: "/etc/nginx/ssl/grafana" ## Folder where the SSL files will be added, default to /etc/nginx/ssl
-    grafana_nginx_ssl_cert: ssl_certif.pem ## Name of the Cert file added in your local /ssl folder
-    grafana_nginx_ssl_key: ssl_certif.key ## Name of the Key file added in your local /ssl folder
+    grafana_nginx_ssl_cert: ssl_certif.pem
+    grafana_nginx_ssl_key: ssl_certif.key
 
   roles:
     - common
