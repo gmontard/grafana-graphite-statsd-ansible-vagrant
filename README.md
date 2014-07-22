@@ -59,7 +59,7 @@ $ vagrant up --provision
 
 ## Deploying with Ansible
 
-Before running the command below you need to add the ip of your target server into the _ansible_hosts_ file
+Before running the command below **you have to add the IP address of your target server into the _ansible_hosts_ file**
 ```
 $ ansible-playbook -v -i ansible_hosts playbook.yml -e target=servers
 ```
