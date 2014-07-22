@@ -28,7 +28,7 @@ All the configuration variables are held under the _graphite.yml_ file, I sugges
 
 Here the most important one for Graphite:
 - _graphite.secret_key_ : This is the django secret signin key, generate your own [here](http://www.miniwebtool.com/django-secret-key-generator/)
-- _graphite.nginx_server_name_ : The domain or IP adress on which you will access graphite
+- _graphite.nginx_server_name_ : The domain or IP address on which you will access graphite
 - _graphite.nginx_htpasswd_ : The .htaccess content, you can generate one from [here](http://htpasswd.i-connector.com/)
 - _graphite.nginx_enable_ssl_ : Wherever or not you want to use SSL, I **strongly** advise you to do so if you don't your credential to be sent in clear mode
 - _graphite.nginx_ssl_cert_ : If you enable the SSL you need an SSL certificate (.crt or .pem), use the name of it here and put it inside the /ssl directroy
@@ -36,8 +36,8 @@ Here the most important one for Graphite:
 
 Here the most important one for Grafana:
 - _grafana_version_ : The version of Grafana to use, check for the latest one
-- _grafana_nginx_listen_ : The IP adress on which you will access your server, by default set to the IP of your vagrant box which is 10.0.0.20
-- _grafana_nginx_server_name_ : The domain or IP adress on which you will access grafana
+- _grafana_nginx_listen_ : The IP address on which you will access your server, by default set to the IP of your vagrant box which is 10.0.0.20
+- _grafana_nginx_server_name_ : The domain or IP address on which you will access grafana
 - _grafana_nginx_htpasswd_ : The .htaccess content, you can generate one from [here](http://htpasswd.i-connector.com/)
 - _grafana_nginx_enable_ssl_ : Wherever or not you want to use SSL, I **strongly** advise you to do so if you don't your credential to be sent in clear mode
 - _grafana_nginx_ssl_cert_ : If you enable the SSL you need an SSL certificate (.crt or .pem), use the name of it here and put it inside the /ssl directroy
