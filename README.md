@@ -43,7 +43,10 @@ Here the most important one for Grafana:
 - _grafana_nginx_ssl_cert_ : If you enable the SSL you need an SSL certificate (.crt or .pem), use the name of it here and put it inside the /ssl directroy
 - _grafana_nginx_ssl_key_ : If you enable the SSL you need an SSL certificate (.key), use the name of it here and put it inside the /ssl directroy
 
-Then you will be able to access your graphite install using your _graphite.nginx_server_name_ and port 8082 (or 8083 if you do enable SSL) and Grafana using your _grafana_nginx_server_name_ and port 80 (or 443 if you do enable SSL).
+Then you will be able to access:
+- **StatsD**: http://your_box_ip_or_domain:8125
+- **Graphite**: http://graphite.nginx_server_name:8082
+- **Grafana**: http://grafana_nginx_server_name
 
 
 ## Running it with Vagrant
