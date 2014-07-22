@@ -36,7 +36,6 @@ Here the most important one for Graphite:
 
 Here the most important one for Grafana:
 - _grafana_version_ : The version of Grafana to use, check for the latest one
-- _grafana_nginx_listen_ : The IP address on which you will access your server, by default set to the IP of your vagrant box which is 10.0.0.20
 - _grafana_nginx_server_name_ : The domain or IP address on which you will access grafana
 - _grafana_nginx_htpasswd_ : The .htaccess content, you can generate one from [here](http://htpasswd.i-connector.com/)
 - _grafana_nginx_enable_ssl_ : Wherever or not you want to use SSL, I **strongly** advise you to do so if you don't your credential to be sent in clear mode
