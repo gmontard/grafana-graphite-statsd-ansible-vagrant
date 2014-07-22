@@ -111,11 +111,11 @@
 
 - name: Upload SSL private Cert
   when: graphite.nginx_enable_ssl
-  copy: src=ssl/{{graphite.nginx_ssl_cert}} dest={{graphite.nginx_ssl_path}}/{{graphite.nginx_ssl_cert}} owner={{ nginx_user }} group={{ nginx_group }}
+  copy: src=files/ssl/{{graphite.nginx_ssl_cert}} dest={{graphite.nginx_ssl_path}}/{{graphite.nginx_ssl_cert}} owner={{ nginx_user }} group={{ nginx_group }}
 
 - name: Upload SSL Key
   when: graphite.nginx_enable_ssl
-  copy: src=ssl/{{graphite.nginx_ssl_key}} dest={{graphite.nginx_ssl_path}}/{{graphite.nginx_ssl_key}} owner={{ nginx_user }} group={{ nginx_group }}
+  copy: src=files/ssl/{{graphite.nginx_ssl_key}} dest={{graphite.nginx_ssl_path}}/{{graphite.nginx_ssl_key}} owner={{ nginx_user }} group={{ nginx_group }}
 
 - name: Link nginx configuration for graphite
   file: src=/etc/nginx/sites-available/graphite.conf dest=/etc/nginx/sites-enabled/graphite.conf state=link owner={{ nginx_user }} group={{ nginx_group }}

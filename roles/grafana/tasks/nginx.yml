@@ -16,8 +16,8 @@
 
 - name: Upload SSL private Cert
   when: grafana_nginx_enable_ssl
-  copy: src=ssl/{{grafana_nginx_ssl_cert}} dest={{grafana_nginx_ssl_path}}/{{grafana_nginx_ssl_cert}} owner={{ grafana_owner }}
+  copy: src=files/ssl/{{grafana_nginx_ssl_cert}} dest={{grafana_nginx_ssl_path}}/{{grafana_nginx_ssl_cert}} owner={{ grafana_owner }}
 
 - name: Upload SSL Key
   when: grafana_nginx_enable_ssl
-  copy: src=ssl/{{grafana_nginx_ssl_key}} dest={{grafana_nginx_ssl_path}}/{{grafana_nginx_ssl_key}} owner={{ grafana_owner }}
+  copy: src=files/ssl/{{grafana_nginx_ssl_key}} dest={{grafana_nginx_ssl_path}}/{{grafana_nginx_ssl_key}} owner={{ grafana_owner }}

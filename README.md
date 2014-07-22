@@ -31,7 +31,7 @@ Here the most important one for Graphite:
 - _graphite.nginx_server_name_ : The domain or IP address on which you will access graphite
 - _graphite.nginx_htpasswd_ : The .htaccess content, you can generate one from [here](http://htpasswd.i-connector.com/)
 - _graphite.nginx_enable_ssl_ : Wherever or not you want to use SSL, I **strongly** advise you to do so if you don't your credential to be sent in clear mode
-- _graphite.nginx_ssl_cert_ : If you enable the SSL you need an SSL certificate (.crt or .pem), use the name of it here and put it inside the /ssl directroy
+- _graphite.nginx_ssl_cert_ : If you enable the SSL you need an SSL certificate (.crt or .pem), use the name of it here and put it inside the /files/ssl directroy
 - _nginx_ssl_key_ : If you enable the SSL you need an SSL certificate (.key), use the name of it here and put it inside the /ssl directroy
 
 Here the most important one for Grafana:
@@ -40,7 +40,7 @@ Here the most important one for Grafana:
 - _grafana_nginx_server_name_ : The domain or IP address on which you will access grafana
 - _grafana_nginx_htpasswd_ : The .htaccess content, you can generate one from [here](http://htpasswd.i-connector.com/)
 - _grafana_nginx_enable_ssl_ : Wherever or not you want to use SSL, I **strongly** advise you to do so if you don't your credential to be sent in clear mode
-- _grafana_nginx_ssl_cert_ : If you enable the SSL you need an SSL certificate (.crt or .pem), use the name of it here and put it inside the /ssl directroy
+- _grafana_nginx_ssl_cert_ : If you enable the SSL you need an SSL certificate (.crt or .pem), use the name of it here and put it inside the /files/ssl directroy
 - _grafana_nginx_ssl_key_ : If you enable the SSL you need an SSL certificate (.key), use the name of it here and put it inside the /ssl directroy
 
 Then you will be able to access:
@@ -62,7 +62,7 @@ $ vagrant up --provision
 
 If you don't own a valid SSL certificate you can still generate a self signed on:
 ```
-$ cd ssl ; openssl req -x509 -newkey rsa:2048 -keyout ssl_certif.pem -out ssl_certif.pem -days 365 -nodes
+$ cd files/ssl ; openssl req -x509 -newkey rsa:2048 -keyout ssl_certif.pem -out ssl_certif.pem -days 365 -nodes
 ```
 
 

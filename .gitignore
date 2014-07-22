@@ -1,4 +1,4 @@
 .DS_Store
 .vagrant/
 vagrant_ansible_inventory*
-ssl/*
+files/ssl/*
