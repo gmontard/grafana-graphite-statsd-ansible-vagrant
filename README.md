@@ -21,11 +21,33 @@ What gets installed with this playbook:
 * And finally [Grafana](http://grafana.org/)
 
 
-## Running it
+## Setup
 
-You shoud **configure** your install by modifying the variables in the _graphite.yml_, see the section *Configure your Grafana/Graphite install* below.
+Before running this playbook you need to configure a few things, mostly **for your own security**.
+All the configuration variables are held under the _graphite.yml_ file, I suggest you to take a look at each of them.
 
-### Using Vagrant
+Here the most important one for Graphite:
+- _graphite.secret_key_ : This is the django secret signin key, generate your own [here](http://www.miniwebtool.com/django-secret-key-generator/)
+- _graphite.nginx_server_name_ : The domain or IP adress on which you will access graphite
+- _graphite.nginx_htpasswd_ : The .htaccess content, you can generate one from [here](http://htpasswd.i-connector.com/)
+- _graphite.nginx_enable_ssl_ : Wherever or not you want to use SSL, I **strongly** advise you to do so if you don't your credential to be sent in clear mode
+- _graphite.nginx_ssl_cert_ : If you enable the SSL you need an SSL certificate (.crt or .pem), use the name of it here and put it inside the /ssl directroy
+- _nginx_ssl_key_ : If you enable the SSL you need an SSL certificate (.key), use the name of it here and put it inside the /ssl directroy
+
+Here the most important one for Grafana:
+- _grafana_version_ : The version of Grafana to use, check for the latest one
+- _grafana_nginx_listen_ : The IP adress on which you will access your server, by default set to the IP of your vagrant box which is 10.0.0.20
+- _grafana_nginx_server_name_ : The domain or IP adress on which you will access grafana
+- _grafana_nginx_htpasswd_ : The .htaccess content, you can generate one from [here](http://htpasswd.i-connector.com/)
+- _grafana_nginx_enable_ssl_ : Wherever or not you want to use SSL, I **strongly** advise you to do so if you don't your credential to be sent in clear mode
+- _grafana_nginx_ssl_cert_ : If you enable the SSL you need an SSL certificate (.crt or .pem), use the name of it here and put it inside the /ssl directroy
+- _grafana_nginx_ssl_key_ : If you enable the SSL you need an SSL certificate (.key), use the name of it here and put it inside the /ssl directroy
+
+Then you will be able to access your graphite install using your _graphite.nginx_server_name_ and port 8082 (or 8083 if you do enable SSL) and Grafana using your _grafana_nginx_server_name_ and port 80 (or 443 if you do enable SSL).
+
+
+## Running it with Vagrant
+
 If you want to install Grafana/Graphite on a VM using Vagrant, you need to install [Vagrant](http://www.vagrantup.com/) and [VirtualBox](https://www.virtualbox.org/) first.
 
 Then hit:
@@ -33,12 +55,13 @@ Then hit:
 $ vagrant up --provision
 ```
 
-### Configure your Grafana/Graphite install
+## Generating an SSL Certificate
 
-Many configuration options are present in the _graphite.yml_ file, you sould take a deep look at it.
-**You should at least change**:
-- _graphite.secret_key_ : Generate a new one from [here](http://www.miniwebtool.com/django-secret-key-generator/))
-- _grafana.nginx_htpasswd_ : Generate your own login/password from [here](http://htpasswd.i-connector.com/))
+If you don't own a valid SSL certificate you can still generate a self signed on:
+```
+$ cd ssl ; openssl req -x509 -newkey rsa:2048 -keyout ssl_certif.pem -out ssl_certif.pem -days 365 -nodes
+```
+
 
 ## Misc
 

@@ -14,25 +14,24 @@ Features
 Role Variables
 --------------
 
-* `grafana.owner` basically nginx user, `www-data` by default
-* `grafana.version` if defined, install this version via binary rather than building from git
-* `grafana.git_url` git url for grafana, set to upstream by default
-* `grafana.git_branch` git branch to track, set to master by default
-* `grafana.root_path` path to clone grafana, `/var/www/grafana` by default
-* `grafana.default_route` default dashboard url, `/dashboard/file/default.json` by default
-* `grafana.index` grafana index to store dashboards, `grafana-dash` by default
-* `grafana.elasticsearch_url` elasticsearch url *for nginx*, http://127.0.0.1:9200 by default
-* `grafana.graphite_url` graphite-web url *for nginx*, http://127.0.0.1:8080 by default
-* `grafana.nginx_config_name` nginx config name, `grafana.conf` by default
-* `grafana.nginx_config_path` nginx configs dir, `/etc/nginx/sites-enabled` by default
-* `grafana.nginx_listen` nginx listen address, `127.0.0.1` by default
-* `grafana.nginx_server_name` nginx server_name (hostname), `127.0.0.1` by default
-* `grafana.nginx_access_log` path to nginx access_log, `false` by default
-* `grafana.nginx_error_log` path to nginx error_log, `false` by default
-* `grafana.nginx_enable_ssl` whether or not ssl should be enabled, `false` by default
-* `grafana.nginx_ssl_cert_path` nginx ssl certificate path, `""` by default
-* `grafana.nginx_ssl_key_path` nginx ssl key path, `""` by default
-* `grafana.nginx_http_auth_file` path to nginx http auth file, `false` by default
+* `grafana_owner` basically nginx user, `www-data` by default
+* `grafana_version` if defined, install this version via binary rather than building from git
+* `grafana_git_url` git url for grafana, set to upstream by default
+* `grafana_git_branch` git branch to track, set to master by default
+* `grafana_root_path` path to clone grafana, `/var/www/grafana` by default
+* `grafana_default_route` default dashboard url, `/dashboard/file/default.json` by default
+* `grafana_index` grafana index to store dashboards, `grafana-dash` by default
+* `grafana_elasticsearch_url` elasticsearch url *for nginx*, http://127.0.0.1:9200 by default
+* `grafana_graphite_url` graphite-web url *for nginx*, http://127.0.0.1:8080 by default
+* `grafana_nginx_config_name` nginx config name, `grafana.conf` by default
+* `grafana_nginx_config_path` nginx configs dir, `/etc/nginx/sites-enabled` by default
+* `grafana_nginx_listen` nginx listen address, `127.0.0.1` by default
+* `grafana_nginx_server_name` nginx server_name (hostname), `127.0.0.1` by default
+* `grafana_nginx_access_log` path to nginx access_log, `false` by default
+* `grafana_nginx_error_log` path to nginx error_log, `false` by default
+* `grafana_nginx_enable_ssl` whether or not ssl should be enabled, `false` by default
+* `grafana_nginx_ssl_cert_path` nginx ssl certificate path, `""` by default
+* `grafana_nginx_ssl_key_path` nginx ssl key path, `""` by default
 
 Minimal installation on ubuntu requires none of variables to be set, it will work on `http://127.0.0.1/`.
 

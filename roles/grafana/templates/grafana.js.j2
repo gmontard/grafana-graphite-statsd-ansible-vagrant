@@ -13,10 +13,10 @@ function (Settings) {
     datasources: {
       graphite: {
         type: 'graphite',
-        {% if grafana.nginx_enable_ssl %}
-        url: "https://{{ grafana.nginx_server_name }}/graphite",
+        {% if grafana_nginx_enable_ssl %}
+        url: "https://{{ grafana_nginx_server_name }}/graphite",
         {% else %}
-        url: "http://{{ grafana.nginx_server_name }}/graphite",
+        url: "http://{{ grafana_nginx_server_name }}/graphite",
         {% endif %}
         default: true
       },
@@ -31,17 +31,17 @@ function (Settings) {
     // elasticsearch url
     // used for storing and loading dashboards, optional
     // For Basic authentication use: http://username:password@domain.com:9200
-    {% if grafana.nginx_enable_ssl %}
-    elasticsearch: "https://{{ grafana.nginx_server_name }}/es",
+    {% if grafana_nginx_enable_ssl %}
+    elasticsearch: "https://{{ grafana_nginx_server_name }}/es",
     {% else %}
-    elasticsearch: "http://{{ grafana.nginx_server_name }}/es",
+    elasticsearch: "http://{{ grafana_nginx_server_name }}/es",
     {% endif %}
 
     // default start dashboard
-    default_route: '{{ grafana.default_route }}',
+    default_route: '{{ grafana_default_route }}',
 
     // Elasticsearch index for storing dashboards
-    grafana.index: "{{ grafana.index }}",
+    grafana_index: "{{ grafana_index }}",
 
     // timezoneOFfset:
     // If you experiance problems with zoom, it is probably caused by timezone diff between

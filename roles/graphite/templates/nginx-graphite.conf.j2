@@ -1,9 +1,35 @@
+{% if graphite.nginx_enable_ssl %}
 server {
-    listen {{ graphite.port }};
-    server_name {{ graphite.server }};
+    listen {{ graphite.nginx_server_port }};
+    server_name {{ graphite.nginx_server_name }};
+
+    return 301 https://{{ graphite.nginx_server_name }}:{{graphite.nginx_server_port_ssl}}$request_uri;
+}
+{% endif %}
+
+server {
+
+    {% if graphite.nginx_enable_ssl %}
+      listen {{graphite.nginx_server_port_ssl}} ssl;
+    {% else %}
+      listen {{ graphite.nginx_server_port }};
+    {% endif %}
+
+    server_name {{ graphite.nginx_server_name }};
 
     client_max_body_size 64M;
     keepalive_timeout 5;
+
+    {% if graphite.nginx_enable_ssl %}
+      ssl on;
+      ssl_certificate {{ graphite.nginx_ssl_path }}/{{ graphite.nginx_ssl_cert }};
+      ssl_certificate_key {{ graphite.nginx_ssl_path }}/{{ graphite.nginx_ssl_key }};
+    {% endif %}
+
+    {% if graphite.nginx_htpasswd %}
+      auth_basic "Password please!";
+      auth_basic_user_file /opt/graphite/graphite.htpasswd;
+    {% endif %}
 
     # path for static files
     root /opt/graphite/webapp/content;

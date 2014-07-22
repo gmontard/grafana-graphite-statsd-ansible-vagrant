@@ -27,9 +27,9 @@
   with_items:
     - psycopg2
     - django
-    - django-tagging 
-    - python-memcached 
-    - pytz 
+    - django-tagging
+    - python-memcached
+    - pytz
     - pyparsing
     - gunicorn
     - twisted
@@ -90,7 +90,7 @@
 
 - name: Copy supervisor configuration for graphite
   template: src=supervisor-graphite.conf.j2 dest=/etc/supervisor/conf.d/graphite.conf
-  notify: 
+  notify:
     - reload supervisor
 
 # NGinx
@@ -100,6 +100,22 @@
 
 - name: Copy nginx configuration for graphite
   template: src=nginx-graphite.conf.j2 dest=/etc/nginx/sites-available/graphite.conf owner={{ nginx_user }} group={{ nginx_group }}
+
+- name: generate htpasswd for graphite
+  when: graphite.nginx_htpasswd is defined
+  template: src=graphite.htpasswd.j2 dest=/opt/graphite/graphite.htpasswd owner={{ nginx_user }} group={{ nginx_group }}
+
+- name: Make the SSL directory.
+  when: graphite.nginx_enable_ssl
+  file: state=directory path={{ graphite.nginx_ssl_path }} owner={{ nginx_user }} group={{ nginx_group }}
+
+- name: Upload SSL private Cert
+  when: graphite.nginx_enable_ssl
+  copy: src=ssl/{{graphite.nginx_ssl_cert}} dest={{graphite.nginx_ssl_path}}/{{graphite.nginx_ssl_cert}} owner={{ nginx_user }} group={{ nginx_group }}
+
+- name: Upload SSL Key
+  when: graphite.nginx_enable_ssl
+  copy: src=ssl/{{graphite.nginx_ssl_key}} dest={{graphite.nginx_ssl_path}}/{{graphite.nginx_ssl_key}} owner={{ nginx_user }} group={{ nginx_group }}
 
 - name: Link nginx configuration for graphite
   file: src=/etc/nginx/sites-available/graphite.conf dest=/etc/nginx/sites-enabled/graphite.conf state=link owner={{ nginx_user }} group={{ nginx_group }}

@@ -1,13 +1,13 @@
 ---
 - name: make grafana dir
-  file: path={{ grafana.root_path }} state=directory owner={{ grafana.owner }} recurse=yes
+  file: path={{ grafana_root_path }} state=directory owner={{ grafana_owner }} recurse=yes
 - name: download grafana
-  get_url: dest={{ grafana.root_path }}/grafana-{{ grafana.version }}.tar.gz url=http://grafanarel.s3.amazonaws.com/grafana-{{ grafana.version }}.tar.gz
+  get_url: dest={{ grafana_root_path }}/grafana-{{ grafana_version }}.tar.gz url=http://grafanarel.s3.amazonaws.com/grafana-{{ grafana_version }}.tar.gz
 - name: make version dir
-  file: path={{ grafana.root_path }}/grafana-{{ grafana.version }} state=directory owner={{ grafana.owner }} recurse=yes
+  file: path={{ grafana_root_path }}/grafana-{{ grafana_version }} state=directory owner={{ grafana_owner }} recurse=yes
 - name: extract grafana tarball
-  unarchive: src={{ grafana.root_path}}/grafana-{{ grafana.version }}.tar.gz dest={{ grafana.root_path }} copy=false creates={{ grafana.root_path }}/grafana-{{ grafana.version }}/README.md
+  unarchive: src={{ grafana_root_path}}/grafana-{{ grafana_version }}.tar.gz dest={{ grafana_root_path }} copy=false creates={{ grafana_root_path }}/grafana-{{ grafana_version }}/README.md
   notify:
-    - chown grafana dir {{ grafana.root_path }}
+    - chown grafana dir {{ grafana_root_path }}
 - name: link grafana version
-  file: path={{ grafana.root_path }}/dist src={{ grafana.root_path }}/grafana-{{ grafana.version }} state=link owner={{ grafana.owner }}
+  file: path={{ grafana_root_path }}/dist src={{ grafana_root_path }}/grafana-{{ grafana_version }} state=link owner={{ grafana_owner }}

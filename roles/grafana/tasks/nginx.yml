@@ -1,11 +1,23 @@
 ---
 - name: make config for nginx
   template: src=nginx.conf.j2
-            dest={{ grafana.nginx_config_path }}/{{ grafana.nginx_config_name }}
-            owner={{ grafana.owner }}
+            dest={{ grafana_nginx_config_path }}/{{ grafana_nginx_config_name }}
+            owner={{ grafana_owner }}
             mode=0644
   notify:
     - reload nginx
 
-- name: generate htpasswd for grafana {{ grafana.root_path }}
-  template: src=grafana.htpasswd.j2 dest={{ grafana.root_path }}/grafana.htpasswd owner={{ grafana.owner }}
+- name: generate htpasswd for grafana {{ grafana_root_path }}
+  template: src=grafana.htpasswd.j2 dest={{ grafana_root_path }}/grafana.htpasswd owner={{ grafana_owner }}
+
+- name: Make the SSL directory.
+  when: grafana_nginx_enable_ssl
+  file: state=directory path={{ grafana_nginx_ssl_path }} owner={{ grafana_owner }}
+
+- name: Upload SSL private Cert
+  when: grafana_nginx_enable_ssl
+  copy: src=ssl/{{grafana_nginx_ssl_cert}} dest={{grafana_nginx_ssl_path}}/{{grafana_nginx_ssl_cert}} owner={{ grafana_owner }}
+
+- name: Upload SSL Key
+  when: grafana_nginx_enable_ssl
+  copy: src=ssl/{{grafana_nginx_ssl_key}} dest={{grafana_nginx_ssl_path}}/{{grafana_nginx_ssl_key}} owner={{ grafana_owner }}
