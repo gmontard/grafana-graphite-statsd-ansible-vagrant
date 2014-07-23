@@ -54,5 +54,7 @@
     - ufw: state=enabled policy=allow
     - ufw: rule=reject port=auth log=yes
     - ufw: logging=on
-    - ufw: rule=allow proto=any src=X.X.X.X port=8125 log=yes insert=1
-    - ufw: rule=deny port=8125 proto=any log=yes insert=2
+    #- ufw: rule=allow proto=any src=X.X.X.X port=8125 log=yes insert=1
+    #- ufw: rule=deny port=8125 proto=any log=yes insert=2
+    #- ufw: rule=deny port=8126 proto=any log=yes insert=3
+
