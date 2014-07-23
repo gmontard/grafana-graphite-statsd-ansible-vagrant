@@ -1,5 +1,6 @@
 ---
 - hosts: "{{target}}"
+  remote_user: vagrant
   sudo: True
   vars:
     graphite:
@@ -45,3 +46,9 @@
     - statsd
     - elasticsearch
     - grafana
+
+  tasks:
+    - ufw: state=enabled policy=allow
+    - ufw: logging=on
+    #- ufw: rule=deny port=8125 proto=any
+    #- ufw: rule=allow proto=any src=0.0.0.0 port=8125
