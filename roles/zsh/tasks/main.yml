@@ -7,7 +7,6 @@
   when: ansible_os_family == 'RedHat'
 
 - name: install oh-my-zsh
-  when: ansible_os_family == "Debian"
   git: repo=https://github.com/robbyrussell/oh-my-zsh dest=~/.oh-my-zsh
   sudo: false
 
@@ -17,4 +16,19 @@
 
 - name: switch to ZSH
   user: name={{user}} shell=/usr/bin/zsh
+  sudo: True
+
+- name: install oh-my-zsh for root
+  when: user != 'root'
+  git: repo=https://github.com/robbyrussell/oh-my-zsh dest=~root/.oh-my-zsh
+  sudo: True
+
+- name: Creating new ~/.zshrc for root
+  when: user != 'root'
+  command: cp ~root/.oh-my-zsh/templates/zshrc.zsh-template ~root/.zshrc
+  sudo: True
+
+- name: switch to ZSH for root
+  when: user != 'root'
+  user: name=root shell=/usr/bin/zsh
   sudo: True

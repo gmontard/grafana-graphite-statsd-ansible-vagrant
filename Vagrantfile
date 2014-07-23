@@ -31,7 +31,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     ansible.inventory_path = "vagrant_hosts"
     ansible.limit          = "all"
     ansible.extra_vars     = {
-      target: private_ip
+      target: private_ip,
+      user: 'vagrant'
     }
   end
 end

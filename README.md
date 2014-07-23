@@ -26,21 +26,24 @@ What gets installed with this playbook:
 Before running this playbook you need to configure a few things, mostly **for security purposes**.
 All the configuration variables are defined in the _playbook.yml_ file, I suggest you to take a look at each of them.
 
+Global:
+- _user_: By default Vagrant will use the user "vagrant".
+
 Here the most important one for **Graphite**:
-- _graphite.secret_key_ : This is the django secret signin key, generate your own [here](http://www.miniwebtool.com/django-secret-key-generator/)
-- _graphite.nginx_server_name_ : The domain or IP address on which you will access graphite
-- _graphite.nginx_htpasswd_ : The .htaccess content, you can generate one from [here](http://htpasswd.i-connector.com/) (by default the login/pass is admin/admin).
-- _graphite.nginx_enable_ssl_ : Wherever or not you want to use SSL, I **strongly** advise you to do so if you don't your credential will be sent in clear mode
-- _graphite.nginx_ssl_cert_ : If you enable the SSL you need an SSL certificate (.crt or .pem), use the name of it here and add it inside the /files/ssl directory
-- _nginx_ssl_key_ : If you enable the SSL you need an SSL certificate (.key), use the name of it here and add it inside the /ssl directroy
+- _graphite.secret_key_: This is the django secret signin key, generate your own [here](http://www.miniwebtool.com/django-secret-key-generator/)
+- _graphite.nginx_server_name_: The domain or IP address on which you will access graphite
+- _graphite.nginx_htpasswd_: The .htaccess content, you can generate one from [here](http://htpasswd.i-connector.com/) (by default the login/pass is admin/admin).
+- _graphite.nginx_enable_ssl_: Wherever or not you want to use SSL, I **strongly** advise you to do so if you don't your credential will be sent in clear mode
+- _graphite.nginx_ssl_cert_: If you enable the SSL you need an SSL certificate (.crt or .pem), use the name of it here and add it inside the /files/ssl directory
+- _nginx_ssl_key_: If you enable the SSL you need an SSL certificate (.key), use the name of it here and add it inside the /ssl directroy
 
 Here the most important one for **Grafana**:
-- _grafana_version_ : The version of Grafana to use, check for the latest one
-- _grafana_nginx_server_name_ : The domain or IP address on which you will access grafana
-- _grafana_nginx_htpasswd_ : The .htaccess content, you can generate one from [here](http://htpasswd.i-connector.com/) (by default the login/pass is admin/admin).
-- _grafana_nginx_enable_ssl_ : Wherever or not you want to use SSL, I **strongly** advise you to do so if you don't your credential will be sent in clear mode
-- _grafana_nginx_ssl_cert_ : If you enable the SSL you need an SSL certificate (.crt or .pem), use the name of it here and add it inside the /files/ssl directory
-- _grafana_nginx_ssl_key_ : If you enable the SSL you need an SSL certificate (.key), use the name of it here and add it inside the /ssl directroy
+- _grafana_version_: The version of Grafana to use, check for the latest one
+- _grafana_nginx_server_name_: The domain or IP address on which you will access grafana
+- _grafana_nginx_htpasswd_: The .htaccess content, you can generate one from [here](http://htpasswd.i-connector.com/) (by default the login/pass is admin/admin).
+- _grafana_nginx_enable_ssl_: Wherever or not you want to use SSL, I **strongly** advise you to do so if you don't your credential will be sent in clear mode
+- _grafana_nginx_ssl_cert_: If you enable the SSL you need an SSL certificate (.crt or .pem), use the name of it here and add it inside the /files/ssl directory
+- _grafana_nginx_ssl_key_: If you enable the SSL you need an SSL certificate (.key), use the name of it here and add it inside the /ssl directroy
 
 
 In order to **restrict who can send data to StatsD** the only way to do it is by using a Firewall and restrict the access to StatsD port 8125. You will find at the end of the _playbook.yml_ two commented lines in order for you to do so using the UFW Firewall *(I recommend to disable all access to port 8125 except for IPs you trust)*.

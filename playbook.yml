@@ -3,6 +3,7 @@
   remote_user: vagrant
   sudo: True
   vars:
+    user: root
     graphite:
       version: master
       timezone: Europe/Paris
