@@ -36,6 +36,7 @@
 
   roles:
     - common
+    - zsh
     - python
     - supervisor
     - role: nginx

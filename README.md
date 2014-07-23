@@ -6,6 +6,7 @@ You can use it to provison a dedicated server or even a virtual machine using th
 It uses [Ansible](http://www.ansible.com/) as a provisionner, make sure to install Ansible before (version >= 1.6).
 
 What gets installed with this playbook:
+*  Zsh and Oh My Zsh
 *  PostgreSQL
 *  NginX webserver/reverse proxy
 *  Python, Pip & VirtualEnv

@@ -1,0 +1,20 @@
+- name: install zsh
+  apt: pkg=zsh state=present
+  when: ansible_os_family == 'Debian'
+
+- name: install zsh rpm
+  yum: name=zsh state=latest
+  when: ansible_os_family == 'RedHat'
+
+- name: install oh-my-zsh
+  when: ansible_os_family == "Debian"
+  git: repo=https://github.com/robbyrussell/oh-my-zsh dest=~/.oh-my-zsh
+  sudo: false
+
+- name: Creating new ~/.zshrc
+  command: cp ~{{user}}/.oh-my-zsh/templates/zshrc.zsh-template ~{{user}}/.zshrc
+  sudo: false
+
+- name: switch to ZSH
+  user: name={{user}} shell=/usr/bin/zsh
+  sudo: True
