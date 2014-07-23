@@ -50,7 +50,9 @@
     - grafana
 
   tasks:
+    - ufw: state=reset
     - ufw: state=enabled policy=allow
+    - ufw: rule=reject port=auth log=yes
     - ufw: logging=on
-    #- ufw: rule=deny port=8125 proto=any
-    #- ufw: rule=allow proto=any src=0.0.0.0 port=8125
+    - ufw: rule=allow proto=any src=X.X.X.X port=8125 log=yes insert=1
+    - ufw: rule=deny port=8125 proto=any log=yes insert=2
